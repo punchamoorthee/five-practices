@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Five practices for a good life — grounded in philosophy, psychology, and the honest examination of what humans actually are."/>
+<title>Five Practices · A Framework for Living</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+
+:root{
+  --bg:#0e0e0d;
+  --bg-1:#161615;
+  --ink:#e8e4db;
+  --ink-2:#8c8880;
+  --ink-3:#3a3936;
+  --gold:#c09858;
+  --gold-dim:rgba(192,152,88,.07);
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'DM Sans',system-ui,sans-serif;
+  --px:clamp(1.5rem,6vw,5rem);
+  --ease:cubic-bezier(.4,0,.2,1);
+  --max:960px;
+}
+
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-weight:300;
+  line-height:1.7;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.85rem var(--px);
+  transition:background .25s var(--ease),border-color .25s;
+  border-bottom:1px solid transparent;
+}
+nav.scrolled{
+  background:rgba(14,14,13,.92);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border-bottom-color:var(--ink-3);
+}
+.nav-logo{
+  font-family:var(--serif);font-style:italic;font-weight:300;
+  font-size:1.05rem;color:var(--gold);
+}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{
+  font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--ink-2);text-decoration:none;transition:color .2s;
+}
+.nav-links a:hover{color:var(--ink)}
+@media(max-width:580px){.nav-links{display:none}}
+
+/* ── HERO ── */
+.hero{
+  min-height:100svh;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:6rem var(--px) clamp(3.5rem,7vw,6rem);
+  max-width:calc(var(--max) + var(--px) * 2);
+}
+.hero-eyebrow{
+  font-size:.68rem;letter-spacing:.25em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:1.5rem;
+  opacity:0;animation:fade .6s var(--ease) .1s forwards;
+}
+.hero h1{
+  font-family:var(--serif);
+  font-size:clamp(3rem,9vw,7rem);
+  font-weight:300;line-height:1.03;letter-spacing:-.01em;
+  max-width:13ch;
+  opacity:0;animation:fade .7s var(--ease) .25s forwards;
+}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero-sub{
+  margin-top:1.75rem;
+  font-size:clamp(.9rem,1.5vw,1.05rem);
+  color:var(--ink-2);max-width:50ch;line-height:1.85;
+  opacity:0;animation:fade .7s var(--ease) .4s forwards;
+}
+
+/* ── SHARED ── */
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--px)}
+.tag{
+  font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:1rem;display:block;
+}
+.reveal{opacity:0;transition:opacity .5s var(--ease)}
+.reveal.visible{opacity:1}
+
+/* ── PREMISE ── */
+.premise{
+  padding:clamp(5rem,10vw,8rem) var(--px);
+  max-width:var(--max);margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;
+}
+.premise-left h2{
+  font-family:var(--serif);
+  font-size:clamp(1.7rem,3vw,2.5rem);
+  font-weight:300;line-height:1.25;
+}
+.premise-right p{
+  color:var(--ink-2);font-size:.95rem;line-height:1.9;
+}
+.premise-right p+p{margin-top:1rem}
+
+/* ── PRACTICES ── */
+.practices{
+  padding:0 var(--px) clamp(4rem,8vw,7rem);
+  max-width:var(--max);margin:0 auto;
+}
+.practices-header{
+  display:flex;align-items:center;gap:1.5rem;
+  padding-bottom:2rem;
+  border-bottom:1px solid var(--ink-3);
+  margin-bottom:0;
+}
+.practices-rule{flex:1;height:1px;background:var(--ink-3)}
+
+.practice{
+  display:grid;
+  grid-template-columns:4rem 1fr 1fr;
+  gap:2rem 3rem;
+  padding:2.75rem 0;
+  border-bottom:1px solid var(--ink-3);
+}
+.practice-num{
+  font-family:var(--serif);
+  font-size:2rem;font-weight:300;
+  color:var(--ink-3);line-height:1;
+  padding-top:.15rem;
+}
+.practice-tag{
+  font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:.5rem;display:block;
+}
+.practice h3{
+  font-family:var(--serif);
+  font-size:clamp(1.3rem,2vw,1.65rem);
+  font-weight:300;line-height:1.2;
+  margin-bottom:1.25rem;
+}
+.practice-shape{
+  font-family:var(--serif);font-style:italic;font-weight:300;
+  font-size:.98rem;color:var(--ink-2);line-height:1.75;
+  padding:1rem 1.25rem;
+  border-left:1px solid var(--gold);
+  background:var(--gold-dim);
+}
+.practice-desc{
+  color:var(--ink-2);font-size:.92rem;line-height:1.9;
+  grid-column:3;
+}
+.practice-desc p+p{margin-top:.85rem}
+.practice-desc strong{color:var(--ink);font-weight:400}
+
+/* ── META ── */
+.meta{
+  padding:0 var(--px) clamp(4rem,8vw,7rem);
+  max-width:var(--max);margin:0 auto;
+}
+.meta-box{
+  border:1px solid var(--ink-3);
+  border-top:1px solid var(--gold);
+  border-radius:8px;
+  padding:clamp(2rem,4vw,3rem);
+  display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:start;
+}
+.meta-quote{
+  font-family:var(--serif);
+  font-size:clamp(1.4rem,2.5vw,2rem);
+  font-weight:300;font-style:italic;line-height:1.35;
+  color:var(--ink);
+}
+.meta-body{color:var(--ink-2);font-size:.92rem;line-height:1.9}
+
+/* ── CYCLE ── */
+.cycle{
+  padding:0 var(--px) clamp(4rem,8vw,7rem);
+  max-width:var(--max);margin:0 auto;
+}
+.cycle h2{
+  font-family:var(--serif);
+  font-size:clamp(1.4rem,2.5vw,2rem);
+  font-weight:300;line-height:1.3;
+  margin-bottom:2rem;
+}
+.cycle-grid{
+  display:grid;grid-template-columns:repeat(5,1fr);
+  border:1px solid var(--ink-3);border-radius:8px;overflow:hidden;
+}
+.cycle-item{
+  padding:1.5rem 1.25rem;
+  border-right:1px solid var(--ink-3);
+}
+.cycle-item:last-child{border-right:none}
+.cycle-n{
+  font-family:var(--serif);font-size:1.3rem;
+  color:var(--ink-3);line-height:1;margin-bottom:.6rem;
+}
+.cycle-name{
+  font-family:var(--serif);font-size:.93rem;
+  font-weight:300;line-height:1.3;color:var(--ink);margin-bottom:.4rem;
+}
+.cycle-role{font-size:.63rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+
+/* ── CLOSING ── */
+.closing{
+  padding:0 var(--px) clamp(5rem,10vw,9rem);
+  max-width:620px;margin:0 auto;text-align:center;
+}
+.closing h2{
+  font-family:var(--serif);
+  font-size:clamp(1.7rem,3.5vw,2.6rem);
+  font-weight:300;line-height:1.2;margin-bottom:1.25rem;
+}
+.closing h2 em{font-style:italic;color:var(--gold)}
+.closing p{color:var(--ink-2);font-size:.93rem;line-height:1.9}
+.closing p+p{margin-top:.9rem}
+
+/* ── FOOTER ── */
+footer{
+  border-top:1px solid var(--ink-3);
+  padding:1.5rem var(--px);
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;
+}
+.footer-note{font-size:.7rem;color:var(--ink-3);max-width:44ch;line-height:1.6}
+.footer-mark{font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--ink-3)}
+
+/* ── ANIMATIONS ── */
+@keyframes fade{from{opacity:0}to{opacity:1}}
+
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .reveal,.hero-eyebrow,.hero h1,.hero-sub{opacity:1!important}
+}
+
+/* ── RESPONSIVE ── */
+@media(max-width:760px){
+  .premise{grid-template-columns:1fr;gap:2rem}
+  .practice{grid-template-columns:2.5rem 1fr;grid-template-rows:auto auto auto}
+  .practice-shape{grid-column:2}
+  .practice-desc{grid-column:1/-1;padding-left:calc(2.5rem + 2rem)}
+  .meta-box{grid-template-columns:1fr}
+  .cycle-grid{grid-template-columns:1fr 1fr}
+  .cycle-item{border-bottom:1px solid var(--ink-3)}
+  .cycle-item:nth-child(2n){border-right:none}
+  .cycle-item:nth-last-child(-n+1){border-bottom:none}
+}
+@media(max-width:480px){
+  .practice{grid-template-columns:1fr}
+  .practice-num{display:none}
+  .practice-shape,.practice-desc{grid-column:1}
+  .practice-desc{padding-left:0}
+  .cycle-grid{grid-template-columns:1fr}
+  .cycle-item{border-right:none}
+  .cycle-item:last-child{border-bottom:none}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <span class="nav-logo">Five Practices</span>
+  <ul class="nav-links">
+    <li><a href="#practices">Practices</a></li>
+    <li><a href="#principle">Principle</a></li>
+    <li><a href="#cycle">The Cycle</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <p class="hero-eyebrow">A framework for living</p>
+  <h1>Five Practices for a <em>Good Life</em></h1>
+  <p class="hero-sub">Not rules. Not resolutions. Practices — recurring engagements with the parts of life that matter most, whose absence leaves something essential unaddressed.</p>
+</section>
+
+<section class="premise reveal">
+  <div class="premise-left">
+    <span class="tag">The premise</span>
+    <h2>Not rituals to collect.<br>Functions to cover.</h2>
+  </div>
+  <div class="premise-right">
+    <p>Most human suffering comes not from life being hard, but from living in ways that contradict human nature while expecting to feel whole. We are meaning-making animals, shaped by evolution, running on embodied cognition, embedded in social systems — and haunted by the awareness of our own death.</p>
+    <p>A good life isn't one of escape from this nature. It's one of alignment with it. These five practices address the five dimensions of that alignment. Remove any one and something essential breaks down. The test for each isn't whether you perform it — it's whether the function it serves is being met.</p>
+  </div>
+</section>
+
+<section class="practices" id="practices">
+  <div class="practices-header">
+    <span class="tag" style="margin:0">The Five Practices</span>
+    <div class="practices-rule"></div>
+  </div>
+
+  <article class="practice reveal" id="p1">
+    <div class="practice-num">01</div>
+    <div>
+      <span class="practice-tag">Foundation</span>
+      <h3>Confronting Reality</h3>
+      <p class="practice-shape">Regular, deliberate encounter with the things you most avoid thinking about — mortality, your own self-deception, what you actually value versus what you act like you value.</p>
+    </div>
+    <div class="practice-desc">
+      <p>The predictive brain is a defense machine as much as a learning machine. Left to itself it constructs an increasingly comfortable fiction that slowly diverges from reality. This practice is the corrective.</p>
+      <p>Mortality is the anchor because it cuts through almost all self-deception. When you genuinely hold your own finitude, trivial things stop demanding the energy you were giving them and important things become clearer. The question shifts from <strong>how do I feel good</strong> to <strong>what is worth doing with the time I actually have.</strong></p>
+      <p>This is the foundational practice because without it the others become performances rather than genuine responses to real life. A map that isn't honest isn't a map — it's a comfort object.</p>
+    </div>
+  </article>
+
+  <article class="practice reveal" id="p2">
+    <div class="practice-num">02</div>
+    <div>
+      <span class="practice-tag">Attention</span>
+      <h3>Presence</h3>
+      <p class="practice-shape">Repeatedly returning your attention to direct, unmediated experience — sensation, perception, the actual texture of the moment — rather than your thoughts about it.</p>
+    </div>
+    <div class="practice-desc">
+      <p>The predictive brain is constitutionally pulled away from the present into anticipation and rumination. Most people spend the majority of their inner life rehearsing the future or re-running the past. The present — where their actual life is happening — gets very little attention.</p>
+      <p><strong>What you attend to is your life,</strong> in the most literal sense. You cannot taste food you're not tasting, love someone you're not attending to, or feel joy you're too distracted to notice.</p>
+      <p>The form matters less than the quality: running, cooking, conversation, physical work can all carry this practice if you actually show up to them.</p>
+    </div>
+  </article>
+
+  <article class="practice reveal" id="p3">
+    <div class="practice-num">03</div>
+    <div>
+      <span class="practice-tag">Belonging</span>
+      <h3>Deep Relationship</h3>
+      <p class="practice-shape">Regular, honest, mutual engagement with a small number of people with whom genuine vulnerability and genuine witnessing are possible.</p>
+    </div>
+    <div class="practice-desc">
+      <p>The self is not a pre-social thing that then enters relationships. The self is built through relationships, language, and culture. There is no you outside of the social matrix that shaped you — and no maintaining yourself outside of ongoing genuine connection.</p>
+      <p>The most robust finding across decades of wellbeing research is simple: <strong>the quality of your close relationships determines more about your wellbeing than almost anything else.</strong> Not wealth, not fame, not achievement.</p>
+      <p>This practice requires two things the word friendship often obscures: mutuality — both people genuinely present — and honesty — the willingness to be seen as you actually are. Small number, real depth.</p>
+    </div>
+  </article>
+
+  <article class="practice reveal" id="p4">
+    <div class="practice-num">04</div>
+    <div>
+      <span class="practice-tag">Meaning</span>
+      <h3>Contribution</h3>
+      <p class="practice-shape">Regular engagement in work — broadly defined — that is oriented outward toward something beyond the self, and that requires genuine skill and effort.</p>
+    </div>
+    <div class="practice-desc">
+      <p>Everything you acquire — money, status, pleasure, novelty — loses its charge relatively quickly. The hedonic treadmill is real. This is why consumption is a structurally poor foundation for a meaningful life. You will always need more.</p>
+      <p>What doesn't habituate in the same way is contribution — the sense that your existence matters to something beyond yourself. <strong>Meaning is not decorative. It is structural.</strong> It holds the self together under pressure.</p>
+      <p>The question to ask is not what do I want to get, but what do I want to give — and to whom, and why. A life built around that answer is fundamentally different from one built around accumulation.</p>
+    </div>
+  </article>
+
+  <article class="practice reveal" id="p5">
+    <div class="practice-num">05</div>
+    <div>
+      <span class="practice-tag">Integration</span>
+      <h3>Metabolizing Experience</h3>
+      <p class="practice-shape">A regular process of converting raw experience — especially difficult experience — into integrated understanding, rather than letting it accumulate as unprocessed residue.</p>
+    </div>
+    <div class="practice-desc">
+      <p>Life continuously delivers things that violate your models: loss, failure, betrayal, illness, disappointment. The mind's default response is either avoidance or rumination — loop without resolution. Neither metabolizes the experience.</p>
+      <p>Unmetabolized experience accumulates as what we variously call trauma, bitterness, or a life that stopped growing. The goal is not resolution in the sense of feeling better, but <strong>integration in the sense that the experience is now part of you</strong> rather than a knot inside you.</p>
+      <p>The form can be journaling, therapy, honest conversation, reflective writing. What matters is the motion: taking what happened and asking what it revealed, what needs to be grieved, what understanding it made possible.</p>
+    </div>
+  </article>
+</section>
+
+<section class="meta reveal" id="principle">
+  <div class="meta-box">
+    <blockquote class="meta-quote">Honesty over comfort — at every point, in every practice.</blockquote>
+    <div>
+      <span class="tag">The meta-principle</span>
+      <p class="meta-body">At every juncture the temptation is to do the version of the practice that feels better rather than the version that's real. The practice that confronts gets replaced by one that confirms. The relationship that witnesses gets replaced by one that flatters. The contribution that stretches gets replaced by one that's safe. The shape of a good life is one that keeps choosing contact with reality over retreat from it — and has built the capacity, through these practices, to bear what reality actually contains.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cycle reveal" id="cycle">
+  <span class="tag">The cycle</span>
+  <h2>The practices connect.<br>Remove one and something breaks.</h2>
+  <div class="cycle-grid">
+    <div class="cycle-item">
+      <p class="cycle-n">01</p>
+      <p class="cycle-name">Confronting Reality</p>
+      <p class="cycle-role">Gives honest raw material</p>
+    </div>
+    <div class="cycle-item">
+      <p class="cycle-n">02</p>
+      <p class="cycle-name">Presence</p>
+      <p class="cycle-role">Quality of attention</p>
+    </div>
+    <div class="cycle-item">
+      <p class="cycle-n">03</p>
+      <p class="cycle-name">Deep Relationship</p>
+      <p class="cycle-role">Makes it worth doing</p>
+    </div>
+    <div class="cycle-item">
+      <p class="cycle-n">04</p>
+      <p class="cycle-name">Contribution</p>
+      <p class="cycle-role">Direction and meaning</p>
+    </div>
+    <div class="cycle-item">
+      <p class="cycle-n">05</p>
+      <p class="cycle-name">Metabolizing</p>
+      <p class="cycle-role">Keeps the system learning</p>
+    </div>
+  </div>
+</section>
+
+<section class="closing reveal">
+  <h2>The difficulty is <em>part of it.</em></h2>
+  <p>Not an obstacle to the good life but one of its essential textures. The capacity to grieve genuinely, adapt honestly, and begin again — without either denial or collapse — is perhaps the master skill of a well-lived life.</p>
+  <p>The practices are not a destination. They are a way of moving through what is already here.</p>
+</section>
+
+<footer>
+  <p class="footer-note">A framework derived from philosophy, psychology, and the honest examination of what humans actually are.</p>
+  <span class="footer-mark">Five Practices</span>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+  const nav = document.getElementById('nav');
+  let ticking = false;
+  window.addEventListener('scroll', function(){
+    if(!ticking){
+      requestAnimationFrame(function(){
+        nav.classList.toggle('scrolled', window.scrollY > 30);
+        ticking = false;
+      });
+      ticking = true;
+    }
+  },{passive:true});
+
+  const observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  },{threshold:0.08});
+
+  document.querySelectorAll('.reveal').forEach(function(el){observer.observe(el)});
+})();
+</script>
+</body>
+</html>
